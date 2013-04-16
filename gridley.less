@@ -1,0 +1,125 @@
+@import "gridley-settings.less";
+
+/******************************
+ * Setup
+ ******************************/
+
+
+/* apply a natural box layout model to all elements */
+/**
+{
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}*/
+
+html
+{
+	font-size: @gl-body-font-size;
+	width: 100%;
+	height: 100%;
+}
+
+body
+{
+	position: relative;
+}
+
+
+
+/******************************
+ * Mixins
+ ******************************/
+
+.gl-font-size (@font-size)
+{
+	font-size: unit(@font-size, rem);
+	line-height: (unit(@gl-baseline) / unit(@font-size));
+}
+
+.gl-padding (@top; @right; @bottom; @left)
+{
+	padding:unit(@top * @gl-baseline, rem)
+		    unit(@right * @gl-baseline, rem)
+		    unit(@bottom * @gl-baseline, rem)
+		    unit(@left * @gl-baseline, rem);
+}
+
+.gl-margin (@top; @right; @bottom; @left)
+{
+	margin:unit(@top * @gl-baseline, rem)
+		   unit(@right * @gl-baseline, rem)
+		   unit(@bottom * @gl-baseline, rem)
+		   unit(@left * @gl-baseline, rem);
+}
+
+.gl-height(@height)
+{
+	height: unit(@height * @gl-baseline, rem);
+}
+
+.gl-row (@width; @rows:@gl-num-columns)
+{
+	float: left;
+	width: (100% * (@width / @rows));
+
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.gl-row (@width; @rows:@gl-num-columns) when (@gl-debug = true)
+{
+	background-color: @gl-debug-row-color;
+
+	position: relative;
+
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.gl-gutter-padding
+{
+	padding: 0 @gl-gutter-size;
+	
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.gl-column (@width; @rows:@gl-num-columns)
+{
+	float: left;
+
+	position: relative;
+
+	width: (100% * (@width / @rows));
+	padding: 0 @gl-gutter-size;
+
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+
+.gl-column (@width; @rows:@gl-num-columns) when (@gl-debug = true)
+{
+	background-color: @gl-debug-column-color;
+
+	border-left: solid @gl-gutter-size @gl-debug-gutter-color;
+	border-right: solid @gl-gutter-size @gl-debug-gutter-color;
+
+	padding: 0;
+}
+
+.gl-inset (@leftInset, @rightInset)
+{
+	margin: 0 (100% * (@rightInset / @gl-num-columns)) 0 (100% * (@leftInset / @gl-num-columns));
+}
+
+
+.gl-clear
+{
+	clear: both;
+}
